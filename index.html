@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 - Advanced Javascript</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="imgViewer" class="imgViewer hidden"></div>
+
+    <header>
+        <div class="content">
+            <button onclick="ToggleDarkMode()">
+                <span id="btnDarkMode" class="material-symbols-outlined">dark_mode</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <h1>Advanced JavaScript</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis sint eaque, expedita praesentium tempore nulla asperiores facere omnis, magnam earum ex! Quos, ab expedita. Ipsum at in facere iste possimus.</p>
+
+        <div id="gallery" class="gallery">
+            <img src="images/beach-1-450x.jpg" alt="" data-full_image="beach-1.jpg">
+            <img src="images/beach-2-450x.jpg" alt="" data-full_image="beach-2.jpg">
+        </div>
+
+        <div id="carousel" class="carousel">
+            <div class="images">
+                <img src="images/beach-1.jpg" alt="">
+                <img src="images/beach-2.jpg" alt="">
+                <img src="images/beach-3.webp" alt="">
+            </div>            
+            <button class="btnLeft" onclick="ReverseSlide()">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="btnRight" onclick="AdvanceSlide()">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </main>
+
+    <script src="scripts/dark-mode.js"></script>
+    <script src="scripts/gallery.js"></script>
+    <script src="scripts/carousel.js"></script>
+</body>
+</html>
