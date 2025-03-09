@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class 12 - Advanced Javascript</title>
 
+    <!-- To display nice icons we're including Google Icons. -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 
@@ -16,7 +17,9 @@
 
     <header>
         <div class="content">
+            <!-- We're attatching a function to this button to toggle dark mode -->
             <button onclick="ToggleDarkMode()">
+                <!-- This span is the format of google icons. The text 'dark_mode' will be magically substituted with the icon. We've also added an id to make it easy to grab this span, because we'll need to change the icon when we click the button. -->
                 <span id="btnDarkMode" class="material-symbols-outlined">dark_mode</span>
             </button>
         </div>
@@ -26,18 +29,22 @@
         <h1>Advanced JavaScript</h1>
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis sint eaque, expedita praesentium tempore nulla asperiores facere omnis, magnam earum ex! Quos, ab expedita. Ipsum at in facere iste possimus.</p>
 
+        <!-- The structure of this gallery is a div that acts as the container, with an id. This is the element we'll be hooking into with our script. Inside, all we need are our images, and a data attribute that provides the filename of the fullsize version that we want to display when the image is clicked. This makes it very easy to add new images. -->
         <div id="gallery" class="gallery">
             <img src="images/beach-1-450x.jpg" alt="" data-full_image="beach-1.jpg">
             <img src="images/beach-2-450x.jpg" alt="" data-full_image="beach-2.jpg">
         </div>
 
+        <!-- This carousel is a bit more complicated. We have the same sort of container div. The images go in their own div to keep them organized and separate from the buttons. -->
         <div id="carousel" class="carousel">
             <div class="images">
                 <img src="images/beach-1.jpg" alt="">
                 <img src="images/beach-2.jpg" alt="">
                 <img src="images/beach-3.webp" alt="">
             </div>            
+            <!-- The buttons will be styled to sit over the images. They each have their own function call on click. -->
             <button class="btnLeft" onclick="ReverseSlide()">
+                <!-- Again, we've got the same google icons spans to display nice arrows. -->
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
             <button class="btnRight" onclick="AdvanceSlide()">
@@ -46,6 +53,7 @@
         </div>
     </main>
 
+    <!-- Scripts are always included at the end of the project. -->
     <script src="scripts/dark-mode.js"></script>
     <script src="scripts/gallery.js"></script>
     <script src="scripts/carousel.js"></script>

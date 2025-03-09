@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 body {
+    /* We're defining a bunch of custom properties here in body - these define the colour scheme of the site. We'll override them when darkmode is applied.*/
     --dark1: #101010;
     --dark2: #222;
     --darkGrey: #555;
@@ -18,6 +19,7 @@ body {
     margin-bottom: 300vh;
 }
 body.darkMode {
+    /* It's not necessary to do this with custom properties, but one advantage is that we don't have to have a ton of noodly selectors like .darkmode p, .darkmode h1, etc. to override and replace every single instance of a relevant color on our site. We just update the custom properties and be done with it. See below all the selectors we can avoid needing to specify by doing it this way. */
     --dark1: #eee;
     --dark2: #ddd;
     --darkGrey: #aaa;
@@ -40,7 +42,7 @@ body.darkMode {
     color: white;
 } */
 
-
+/* Our image viewer is set to position fixed, with bottom, top, left and right all set to 0. The effect of this is that it will fill the whole screen no matter where we are on the page. position: fixed is like position: absolute in that it will remove itself from the regular page flow for us to set it where we like, but with the added effect that it will follow us on the page. */
 .imgViewer {
     position: fixed;
     background-color: rgba(0, 0, 0, 0.837);
@@ -49,18 +51,21 @@ body.darkMode {
     left: 0;
     right: 0;
 
+    /* z-index needs to be high so that it sits above every other element on the page. */
     z-index: 99;
 
+    /* We're just doing our due dilligence to make sure the image is centered properly here. */
     display: grid;
     place-content: center;
 
+    /* This and the .hidden class will let us fade the imgViewer nicely in and out of apparent existence. */
     opacity: 1;
-    
     transition: opacity 0.5s;
 }
 
 .hidden {
     opacity: 0;
+    /* this style prevents the element from blocking the pointer. Without this, nothing on the page will be clickable because, even with opacity 0, the element still *exists* on the page. Only display: none would remove this, but display: none can't be transitioned, so this is a nice workaround. */
     pointer-events: none;
 }
 
@@ -99,6 +104,8 @@ main {
     gap: 20px;
 }
 
+/* The carousel needs the images and containers to be a consistent height, so we're specifying them here. This will prevent images of different sizes from appearing differently on the carousel. We're setting a custom property so we can easly adjust this height across the several elements that need it set. */
+/* We're putting position: relative on the carousel because the images and buttons need to be positioned absolutely with respect to this div. On its own, relative doesn't do anything to the div, but it makes absolutely positioned elements within it position themselves with resepect to this element, rather than the page in general. */
 .carousel {
     --height: 400px;
     position: relative;
@@ -112,17 +119,21 @@ main {
     background: black;
 }
 
+/* Position: absolute removes the element from the normal flow of the page. This lets us stack them on top of each other. */
 .carousel img {
     position: absolute;
     width: 100%;
     height: var(--height);
+    /* object-fit defines how the image should behave if the container and the image size don't match. Cover will make it so the image will fill the entire available space, cropping if necessary. Contain does the reverse: it compresses the image so it fits within the space completely. */
     object-fit: cover;
     transition: opacity 1s;
 }
+/* We need to ensure the first image has priority over the other images because they're rendered on top of each other in the sequence they're defined in the HTML - so the last image would be on top. But the slideshow should start at the beginning.  */
 .carousel img:first-child {
     z-index: 1;
 }
 
+/* Like the images, the buttons are positioned absolutely. Here we just stick them on their respective sides. By default, they'll sit to the left, so we just need to make the right button sit to the right. We're setting the top and bottom to 0 so that they occupy the full height of the carousel.*/
 .carousel button {
     position: absolute;
     top: 0;
@@ -134,6 +145,7 @@ main {
     border: 0;
 
     opacity: 0;
+    /* Buttons should indicate that they're clickable. For some reason that totally escapes me, this isn't a default! */
     cursor: pointer;
 }
 .carousel:hover button {
@@ -144,6 +156,7 @@ main {
     right: 0;
 }
 
+/* Here we're just making the arrow icons display nicely in the buttons. */
 .carousel span {
     font-size: 3em;
     color: #ccc;
@@ -159,6 +172,7 @@ main {
 }
 
 
+/* Finally we have a couple of media queries that just make the page display more nicely on mobile. */
 @media screen and (width < 740px) {
     main {
         padding: 20px;
